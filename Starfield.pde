@@ -14,10 +14,20 @@ void draw() {
   background(0);
   noStroke();
     for (int i = 1; i<pList.length; i++) {
-    pList[0].move();
-    pList[0].show();
+    pList[i].move();
+    pList[i].show();
 }
 }
+void mousePressed() {
+  if (mousePressed) {
+      for (int i = 0; i < pList.length; i++) {
+    pList[i] = new particle();
+  }
+    background(0);
+  }
+  }
+
+
 class particle {
   double myX, myY, myAngle, mySpeed;
   int myColor;
