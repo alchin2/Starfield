@@ -42,22 +42,16 @@ class particle {
 
 class oddParticle extends particle {
   oddParticle() {
-    myX=0;
-    myY=600;
+    myX=Math.random()*40+381;
+    myY=Math.random()*40+381;
+    mySpeed=50;
+    myAngle=Math.random()*6.28;
   }
   void move(){
-    if(myX<425){
-    myX+=25;
-  }
+   myX-=Math.cos(myAngle)*mySpeed;
+    myY-=Math.sin(myAngle)*mySpeed;
 }
   void show(){
   image(creeper,(float)myX,(float)myY,50,100);
-  if (myX==425){
-    for(int i = 1;i<pList.length;i++)
-    {
-    pList[i].move();
-    pList[i].show();
-    }
-  }
   }
 }
