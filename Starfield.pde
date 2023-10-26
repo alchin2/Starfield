@@ -3,25 +3,27 @@ PImage creeper, creeper2;
 void setup() {
   size(800, 800);
   background(0);
-  creeper=loadImage("c1");
-  creeper2=loadImage("c2");
   for (int i = 1; i<pList.length; i++) {
-    pList[0]=new oddParticle();
     pList[i]=new particle();
+     pList[0]=new oddParticle();
   }
 }
 void draw() {
   background(0);
   noStroke();
+  pList[0].move();
+    pList[0].show();
     for (int i = 1; i<pList.length; i++) {
     pList[i].move();
     pList[i].show();
+    
 }
 }
 void mousePressed() {
   if (mousePressed) {
       for (int i = 0; i < pList.length; i++) {
     pList[i] = new particle();
+    pList[0]= new oddParticle();
   }
     background(0);
   }
@@ -39,6 +41,7 @@ class particle {
     myColor = color((int)(Math.random()*255+40), (int)(Math.random()*46+200), (int)(Math.random()*96+200));
   }
   void move() {
+    
     myX+=Math.cos(myAngle)*mySpeed;
     myY+=Math.sin(myAngle)*mySpeed;
   }
@@ -52,16 +55,23 @@ class particle {
 
 class oddParticle extends particle {
   oddParticle() {
-    myX=Math.random()*40+381;
-    myY=Math.random()*40+381;
-    mySpeed=50;
-    myAngle=Math.random()*6.28;
+    myX=400;
+    myY=200;
+    mySpeed=15;
+    myAngle=0;
   }
   void move(){
-   myX-=Math.cos(myAngle)*mySpeed;
-    myY-=Math.sin(myAngle)*mySpeed;
+     myAngle+=(.1);
+   myX+=Math.cos(myAngle)*mySpeed;
+    myY+=Math.sin(myAngle)*mySpeed;
 }
   void show(){
-  image(creeper,(float)myX,(float)myY,50,100);
+    background(0);
+  noStroke();
+  fill(150, 75, 0);
+  rect((int)myX+10, (int)myY+30, 10, 25);
+  fill(5, 71, 42);
+  triangle((int)myX+15, (int)myY+15, (int)myX, (int)myY+45, (int)myX+30, (int)myY+45);
+  triangle((int)myX+15, (int)myY+5, (int)myX+5, (int)myY+30, (int)myX+25, (int)myY+30);
   }
 }
